@@ -11,6 +11,7 @@ import {BrowserRouter,Routes, Route} from 'react-router-dom';
 import { render } from '@testing-library/react';
 import Login from './components/Login';
 import Register from './components/Register';
+import MenuFixed from './components/MenuFixed';
 
 function App() {
 
@@ -123,17 +124,15 @@ function App() {
 
   return (
     <BrowserRouter>
-       <MenuUp></MenuUp>
        
-
        <Routes>
-       <Route path='/login' element={<Login/>}/>
-       <Route path='/register' element={<Register/>}/>
-        <Route path='/' element={<Bookstore books={books} Add={likeABook}></Bookstore>}/>
-        <Route path='/fav' element={<Favourites books={selectedBooks} />}/>
+       <Route path='/login' element={<div><MenuFixed></MenuFixed><Login/></div>}/>
+       <Route path='/register' element={<div><MenuFixed/><Register/></div>}/>
+        <Route path='/' element={<div><MenuUp></MenuUp><Bookstore books={books} Add={likeABook}></Bookstore><MenuDown></MenuDown></div>}/>
+        <Route path='/fav' element={<div><MenuFixed></MenuFixed><Favourites books={selectedBooks} /></div>}/>
        </Routes>
      
-       <MenuDown></MenuDown>
+       
       
     </BrowserRouter>
   )
