@@ -2,17 +2,26 @@ import React from 'react'
 import { useState } from 'react';
 import {FaHeart} from 'react-icons/fa'
 import {AiOutlinePlus} from 'react-icons/ai'
+import {AiOutlineBook} from 'react-icons/ai'
 import PopUp from './PopUp';
+import PopupChangeBook from './PopupChangeBook';
 
 function Books({book, Add, present}) {
 
   const [selectedButton, setColor] = useState("white");
   const [isOpen, setIsOpen] = useState(false);
+  
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   }
 
+  const [isOpenChange, setIsOpenChange] = useState(false);
+ 
+  const togglePopupChange = () => {
+    setIsOpenChange(!isOpenChange);
+  }
+ 
   return (
 
     
@@ -35,12 +44,30 @@ function Books({book, Add, present}) {
     <button className='button_more' onClick={togglePopup}>
       <AiOutlinePlus></AiOutlinePlus>
       {isOpen &&  <PopUp
-      handleClose={()=>{}}
-      content={<div className='desc'>{book.description}</div>}
+      handleClose={()=>{}} 
+      book ={book}
+     /* content={<div className='desc'>{book}</div>} */
       />}
      
       </button>
     Read more
+    </div>
+    <div className='more'>
+    <style>{`
+        .red {color: red}
+        .white {color: white}
+        
+      `}</style>
+      
+  <button className='button_more'>
+      <AiOutlineBook  onClick={togglePopupChange}></AiOutlineBook>
+      {isOpenChange && <PopupChangeBook book={book}
+      handleCloseChange={togglePopupChange}
+    />}
+    
+    </button>
+     
+    Update book
     </div>
     <div className='like'> 
     <button style={{border: "none"}} className={selectedButton}
