@@ -23,12 +23,12 @@ class BookController extends Controller
     public function store(Request $request) {
 
         $logged_user = auth()->user();
-    //    $user_role=UserRole::find($logged_user->id_role);
-/* OVA DVA VRATI KAD BUDES NAPRAVILA LOGIN
+        $user_role=UserRole::find($logged_user->id_role);
+// OVA DVA VRATI KAD BUDES NAPRAVILA LOGIN
         if($user_role->role_name != 'user') {
             return response()->json(['You do not have premission for that action!']);
         }
-*/
+
             $validator = Validator::make($request->all(), [
                 'title' => 'required|string|max:50',
                 'description' => 'required|string|max:255',
@@ -58,7 +58,7 @@ class BookController extends Controller
                     'description'=> $request->description,
                     'id_author'=> $author->id,
                     'id_category'=> $category->id,
-                    'id_user' => 1 //$logged_user->id
+                    'id_user' => $logged_user->id
                 ]);
             }
             elseif($author_id==null){
@@ -72,7 +72,7 @@ class BookController extends Controller
                     'description'=> $request->description,
                     'id_author'=> $author->id,
                     'id_category'=> $category_id->id,
-                    'id_user' => 1 //$logged_user->id
+                    'id_user' => $logged_user->id
                 ]);
             }
             elseif($category_id==null){
@@ -84,7 +84,7 @@ class BookController extends Controller
                     'description'=> $request->description,
                     'id_author'=> $author_id->id,
                     'id_category'=> $category->id,
-                    'id_user' => 1 //$logged_user->id
+                    'id_user' => $logged_user->id
                 ]);
 
 
@@ -95,7 +95,7 @@ class BookController extends Controller
                     'description'=> $request->description,
                     'id_author'=>$author_id->id,
                     'id_category'=> $category_id->id,
-                    'id_user' => 1 //$logged_user->id
+                    'id_user' => $logged_user->id
                 ]);
             }
             
@@ -144,14 +144,14 @@ class BookController extends Controller
 //OVA DRUGA METODA RADI!!!!!!!!!!!!
     public function update($id, Request $request)
     {
-        /*
+        
         $logged_user = auth()->user();
         $user_role=UserRole::find($logged_user->id_role);
 
         if($user_role->role_name != 'user') {
             return response()->json(['You do not have premission fro that action!']);
         }
-*/
+
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:50',
             'description' => 'required|string|max:255',
@@ -182,7 +182,7 @@ class BookController extends Controller
             $book->description = $request->description;
             $book->id_author =  $author->id;
             $book->id_category = $category->id;
-            $book->id_user = 1; //$logged_user->id;
+            $book->id_user = $logged_user->id;
 
            
         }
@@ -197,7 +197,7 @@ class BookController extends Controller
             $book->description = $request->description;
             $book->id_author =  $author->id;
             $book->id_category = $category_id->id;
-            $book->id_user = 1; //$logged_user->id;
+            $book->id_user = $logged_user->id;
         
         }
         elseif($category_id==null){
@@ -210,7 +210,7 @@ class BookController extends Controller
             $book->description = $request->description;
             $book->id_author = $author_id->id;
             $book->id_category = $category->id;
-            $book->id_user = 1; //$logged_user->id;
+            $book->id_user = $logged_user->id;
 
 
         }
@@ -221,7 +221,7 @@ class BookController extends Controller
             $book->description = $request->description;
             $book->id_author = $author_id->id;
             $book->id_category = $category_id->id;
-            $book->id_user = 1; //$logged_user->id;
+            $book->id_user =$logged_user->id;
         }
 
 
@@ -232,14 +232,14 @@ class BookController extends Controller
     }
 
     public function destroy($id) {
-/*
+
         $logged_user = auth()->user();
         $user_role=UserRole::find($logged_user->id_role);
 
         if($user_role->role_name!='admin') {
             return response()->json(['You do not have premission for that action!']);
         }
-*/
+
        $book = Book::find($id);
 
         $book->delete();

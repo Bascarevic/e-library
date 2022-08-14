@@ -12,10 +12,13 @@ function PopupChangeBook ({book}){
     .then((res)=>{
       console.log(res.data)
       window.alert(res.data.message)
+      window.location.reload()
+      /*
       if (res.data.success) {
           window.location.href='/' //ovo je jedan nacin resenja, al ovo ponovo ucitava sve
                
       }
+      */
   }).catch((e)=>{
       console.log(e)
       console.log(changeData)

@@ -23,12 +23,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::resource('/books', BookController::class)->only('index', 'show');
-Route::resource('/booksStore', BookController::class)->only('store', 'update', 'destroy');
+Route::resource('/booksStore', BookController::class)->only('store');
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
    // Route::resource('/books', BookController::class)->only('index');
-   // Route::resource('/books', BookController::class)->only('store', 'update'); //radi! //dodati ovde SHOW!
+    Route::resource('/booksStore', BookController::class)->only('update', 'destroy'); //radi! //dodati ovde SHOW!
    // Route::get('/show/{id}', [BookController::class, 'show']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
