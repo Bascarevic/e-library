@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         UserRole::factory()->create([
             'role_name' => 'user'
         ]);
-        /*
+        
         Category::factory()->create([
             'type' => 'roman'
         ]);
@@ -51,8 +51,8 @@ class DatabaseSeeder extends Seeder
         Category::factory()->create([
             'type' => 'drama'
         ]);
-*/
-        Author::factory()->count(10)->create();
-        Book::factory()->count(10)->create();
+//Mogu i obrisati Author i Book factory
+        //Author::factory()->count(10)->create();
+       // Book::factory()->count(10)->create();
     }
 }

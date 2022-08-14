@@ -30,7 +30,7 @@ function Books({book, Add, present}) {
               src={book.image}></img>
 
       <div className='title'>Title: {book.title}</div>
-      <div className='author'>Author: {book.author_id.name}  {book.author_id.surname}</div>
+      <div className='author'>Author: {book.author_id.name_and_surname}  {book.author_id.surname}</div>
       <div className='category'>Category: {book.category_id.type}</div>
       {present===true ? 
     <>

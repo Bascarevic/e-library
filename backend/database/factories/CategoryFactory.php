@@ -17,7 +17,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'type'=>$this->faker->randomElement($array=array('roman', 'drama', 'poezija', 'beletristika', 'decija knjizevnost')),
+           // 'type'=>$this->faker->randomElement($array=array('roman', 'drama', 'poezija', 'beletristika', 'decija knjizevnost')),
         ];
     }
 }

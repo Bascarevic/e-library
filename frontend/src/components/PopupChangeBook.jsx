@@ -88,7 +88,7 @@ handleClose = () => {
                 </div>  
                 <div class="form-group">
                     <label>Author</label>
-                    <input type="text" id="form3Example3" className="form-control form-control-lg" name="author"  defaultValue={book.author_id.name} onInput={handleInput}/>
+                    <input type="text" id="form3Example3" className="form-control form-control-lg" name="author"  defaultValue={book.author_id.name_and_surname} onInput={handleInput}/>
                 </div>
                 <div class="form-group">
                     <label>Category</label>

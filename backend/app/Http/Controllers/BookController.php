@@ -31,7 +31,7 @@ class BookController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'title' => 'required|string|max:50',
-                'description' => 'required|string|max:255',
+                'description' => 'required|string|max:500',
                 'author'=>'required|string|max:255',
                 'category'=>'required|string|max:255'
             ]);
@@ -40,13 +40,12 @@ class BookController extends Controller
                 return response()->json($validator->errors());
             }
 
-            $author_id = Author::where('name', '=', $request->author)->first();
+            $author_id = Author::where('name_and_surname', '=', $request->author)->first();
             $category_id = Category::where('type', '=', $request->category)->first();
            
             if($author_id==null && $category_id==null){
                 $author = Author::create([
-                    'name'=>$request->author,
-                    'surname'=>$request->author
+                    'name_and_surname'=>$request->author
                 ]);
 
                 $category = Category::create([
@@ -63,8 +62,7 @@ class BookController extends Controller
             }
             elseif($author_id==null){
                 $author = Author::create([
-                    'name'=>$request->author,
-                    'surname'=>$request->author
+                    'name_and_surname'=>$request->author
                 ]);
                 
                 $book = Book::create([
@@ -163,13 +161,12 @@ class BookController extends Controller
             return response()->json($validator->errors());
         } 
         
-        $author_id = Author::where('name', '=', $request->author)->first();
+        $author_id = Author::where('name_and_surname', '=', $request->author)->first();
         $category_id = Category::where('type', '=', $request->category)->first();
        
         if($author_id==null && $category_id==null){
             $author = Author::create([
-                'name'=>$request->author,
-                'surname'=>$request->author
+                'name_and_surname'=>$request->author
             ]);
 
             $category = Category::create([
@@ -188,8 +185,7 @@ class BookController extends Controller
         }
         elseif($author_id==null){
             $author = Author::create([
-                'name'=>$request->author,
-                'surname'=>$request->author
+                'name_and_surname'=>$request->author
             ]);
             $book = Book::find($id);
 
