@@ -236,7 +236,7 @@ class BookController extends Controller
         $logged_user = auth()->user();
         $user_role=UserRole::find($logged_user->id_role);
 
-        if($user_role->role_name!='admin') {
+        if($user_role->role_name!='user') {
             return response()->json(['You do not have premission for that action!']);
         }
 

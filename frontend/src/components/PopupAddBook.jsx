@@ -1,47 +1,54 @@
 import axios from 'axios';
 import React from 'react'
 import { useState } from "react"
+import {useParams} from "react-router-dom";
  
 const PopupAddBook = () => {
+
+    let user= useParams();
     function handleAdding(e){
         e.preventDefault();
-        /*axios.post("api/add", addData).then(res=>{
-            console.log(res.data);
-            navigate("/add");
-        }).catch(e=>{
-            console.log(e)
-        });
-      */
-     /*
-      axios.post('http://127.0.0.1:8000/api/books', addData,{
-          headers: {
-              'Authorization' : 'Bearer' + window.sessionStorage.getItem('auth_token')
-          }
-      }).then((res)=>{
-          console.log(res.data)
-          window.alert(res.data.message)
-      }).catch((e)=>{
-          console.log(e)
-          window.alert(e.message + '\nProveri unos')
+        
+      if(user.user_id !== null && user.user_id!==undefined){
+      axios.post('http://127.0.0.1:8000/api/booksStore/'+user.user_id, addData,{
+        headers:{
+            'Authorization' : 'Bearer ' +window.sessionStorage.getItem('auth_token')
+        }
       })
-      }
- */
-
-      axios.post('http://127.0.0.1:8000/api/booksStore', addData)
       .then((res)=>{
         console.log(res.data)
-        window.alert(res.data.message)
-        window.location.reload() //ne znam koliko je ovo pametno resenje takodje
-        /*
-        if (res.data.success) {
-            window.location.href='/' //ovo je jedan nacin resenja, al ovo ponovo ucitava sve
-                 
+        if(res.data.success){
+            window.alert(res.data.message)
+            window.location.reload()
+        }else{
+            alert("Niste ulogovani!")
         }
-        */
+         
     }).catch((e)=>{
         console.log(e)
-        window.alert(e.message + '\nProveri unos')
+        window.alert(e.message + '\nProveri unos ' + user.user_id)
     })
+}else{
+    axios.post('http://127.0.0.1:8000/api/booksStore', addData,{
+        headers:{
+            'Authorization' : 'Bearer ' +window.sessionStorage.getItem('auth_token')
+        }
+      }) .then((res)=>{
+        console.log(res.data)
+        if(res.data.success){
+            window.alert(res.data.message)
+            window.location.reload()
+        }else{
+            alert(res.data.error)
+        }
+         
+    }).catch((e)=>{
+        console.log(e)
+        console.log(window.sessionStorage.getItem('auth_token'))
+        window.alert(e.message + '\nProveri unos' + user.user_id)
+    })
+
+} //OBRATI PAZNJU NA OVO!!!!!
 }
   /*
  const[userData, setUserData] = useState({
@@ -59,12 +66,6 @@ const PopupAddBook = () => {
 //let navigate = useNavigate();
  
 function handleInput(e){
-    /*
-    let newAddData = addData;
-    newAddData[e.target.name] = e.target.value;
-    console.log(newAddData)
-   setAddData(newAddData);
-   */
   //e.persist();
   setAddData({
     ...addData,
