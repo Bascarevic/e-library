@@ -12,6 +12,7 @@ import { render } from '@testing-library/react';
 import Login from './components/Login';
 import Register from './components/Register';
 import MenuFixed from './components/MenuFixed';
+import Profile from './components/Profile';
 
 function App() {
 
@@ -130,6 +131,7 @@ function App() {
        <Route path='/register' element={<div><MenuFixed/><Register/></div>}/>
         <Route path='/' element={<div><MenuUp></MenuUp><Bookstore books={books} Add={likeABook}></Bookstore><MenuDown></MenuDown></div>}/>
         <Route path='/fav' element={<div><MenuFixed></MenuFixed><Favourites books={selectedBooks} /></div>}/>
+        <Route path='/profile' element={<div><MenuUp></MenuUp><Profile></Profile></div>}/>
        </Routes>
      
        

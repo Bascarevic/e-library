@@ -429,3 +429,27 @@
 }
 
 .remove_btn:hover, .add_btn:hover, .change_btn:hover {opacity: 1}
+
+.down_menu{
+  min-height: 50px;}
+
+  .logOut{
+    background-color:#800000;
+    max-height: 30px;
+ }
+
+ .weatherData{
+  float: right;
+  margin-left: 15;
+ }
+
+ .quotesData{
+  float: right;
+  position: relative;
+ }
+
+ .App {
+  text-align: center;
+  margin-top: 20px;
+}
+

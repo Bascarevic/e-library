@@ -3,8 +3,10 @@ import { useState } from 'react';
 import {FaHeart} from 'react-icons/fa'
 import {AiOutlinePlus} from 'react-icons/ai'
 import {AiOutlineBook} from 'react-icons/ai'
+import {BsFileEarmarkArrowDown} from 'react-icons/bs'
 import PopUp from './PopUp';
 import PopupChangeBook from './PopupChangeBook';
+import axios from 'axios';
 
 function Books({book, Add, present}) {
 
@@ -21,6 +23,22 @@ function Books({book, Add, present}) {
   const togglePopupChange = () => {
     setIsOpenChange(!isOpenChange);
   }
+
+  
+  function download() {
+    axios({
+      url: 'http://127.0.0.1:8000/api/download',
+      method: 'GET',
+      responseType: 'blob',
+    }).then((response)=>{
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'CV.pdf'); //msm da ovde moze bilo koje drugo ime
+     // document.body.appendChild(link);
+      link.click();
+    })
+  }
  
   return (
 
@@ -34,6 +52,7 @@ function Books({book, Add, present}) {
       <div className='category'>Category: {book.category_id.type}</div>
       {present===true ? 
     <>
+    {/*Read more*/}
     <div className='more'>
     <style>{`
         .red {color: red}
@@ -52,6 +71,7 @@ function Books({book, Add, present}) {
       </button>
     Read more
     </div>
+    {/*Update book*/}
     <div className='more'>
     <style>{`
         .red {color: red}
@@ -60,7 +80,7 @@ function Books({book, Add, present}) {
       `}</style>
       
   <button className='button_more'>
-      <AiOutlineBook  onClick={togglePopupChange}></AiOutlineBook>
+  <AiOutlineBook  onClick={togglePopupChange}></AiOutlineBook>
       {isOpenChange && <PopupChangeBook book={book}
       handleCloseChange={togglePopupChange}
     />}
@@ -69,6 +89,9 @@ function Books({book, Add, present}) {
      
     Update book
     </div>
+
+{/*Like book*/}
+    
     <div className='like'> 
     <button style={{border: "none"}} className={selectedButton}
     onMouseDown={() => setColor((selectedButton) => (selectedButton === "white" ? "red" : "white"))}
@@ -76,6 +99,25 @@ function Books({book, Add, present}) {
       <FaHeart></FaHeart>
       </button>
       Like the book
+    </div>
+
+     {/*ODAVDE KRECE DOWNLOAD;  RADII!!!!!!!!!!!!
+     p.s. promeniti pdf fajl koji se skida */}
+
+<div className='more'>
+    <style>{`
+        .red {color: red}
+        .white {color: white}
+        
+      `}</style>
+     
+  <button className='button_more' onClick={download}>
+      <BsFileEarmarkArrowDown ></BsFileEarmarkArrowDown>
+   
+    
+    </button>
+     
+    Download book
     </div>
 
     </> : <></>
