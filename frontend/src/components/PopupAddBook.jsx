@@ -74,6 +74,7 @@ function handleInput(e){
 }
 
 
+
   return (
       <div className='popupAdd'>
       <div className='boxAdd'>
@@ -102,6 +103,7 @@ function handleInput(e){
                 </div>
             </form>        
         </div>
+       {/* <button className='close' onClick={book.handleClose}>x</button> */} 
       </div>
     </div>
   )

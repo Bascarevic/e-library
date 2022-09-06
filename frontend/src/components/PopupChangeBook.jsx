@@ -9,8 +9,8 @@ function PopupChangeBook ({book}){
   function handleChanging(e){
     e.preventDefault();
  let bookId = book.id;
- if(user.user_id !== null && user.user_id!==undefined){
-    axios.put('http://127.0.0.1:8000/api/booksStore/'+bookId + user.user_id, changeData,{
+ if(user.user_id !== null && user.user_id!==undefined){//+ user.user_id
+    axios.put('http://127.0.0.1:8000/api/booksStore/'+bookId , changeData,{
       headers:{
         'Authorization' : 'Bearer ' +window.sessionStorage.getItem('auth_token')
       }
@@ -105,7 +105,7 @@ handleClose = () => {
             </form>     
             
         </div>
-         
+       {/* <button className='close' onClick={book.handleClose}>x</button> */} 
       </div>
      
     </div>

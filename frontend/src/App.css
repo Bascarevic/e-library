@@ -30,10 +30,10 @@
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #6b0600;
-  align-items: flex-start;
-  text-align: left;
+ /* align-items: flex-start;*/
+  /*text-align: left;*/
   min-height: 78px;
-  padding-left: 20px;
+  /*padding-left: 20px; */
   font-size: 30px;
 
  }
@@ -42,7 +42,8 @@
   background-color:#800000;
   font-size: 20px;
   text-align: left;
-  
+  align-items: flex-start;
+  padding-left: 20px;
  }
 
  .options{
@@ -237,7 +238,7 @@
   background-color:#800000;
   
  }
-
+/*
  .menuDown {
   display: flex;
   flex-direction: column;
@@ -260,7 +261,7 @@
   text-align: left;
   
  }
-
+*/
  .options{
   background-color: #6b0600;
   display: flex;
@@ -438,18 +439,27 @@
     max-height: 30px;
  }
 
- .weatherData{
-  float: right;
-  margin-left: 15;
+ .weatherDataText{
+  color: white;
+  background-color:#800000;
+  font-size: 20px;
+  text-align: right;
+  align-items: flex-end;
+  padding-right: 20px;
+  
  }
-
+ 
  .quotesData{
-  float: right;
-  position: relative;
+  background-color: #6b0600;
+  color: white;
  }
 
  .App {
   text-align: center;
   margin-top: 20px;
+}
+
+.dataGrid{
+  height: 500px;
 }
 

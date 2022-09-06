@@ -26,7 +26,7 @@ function PopupRemoveBook () {
        
        vratiID();
        if(user.user_id !== null && user.user_id!==undefined){
-         axios.delete('http://127.0.0.1:8000/api/booksStore/'+id + user.user_id,{
+         axios.delete('http://127.0.0.1:8000/api/booksStore/'+ id+ user.user_id,{
           headers:{
             'Authorization' : 'Bearer ' +window.sessionStorage.getItem('auth_token')
       }
@@ -36,6 +36,7 @@ function PopupRemoveBook () {
       if(res.data.success){
           window.alert(res.data.message)
           window.location.reload()
+          //window.location.href = '/bookstore'
       }else{
           alert("Niste ulogovani!")
       }
@@ -56,7 +57,9 @@ function PopupRemoveBook () {
           window.alert(res.data)
           window.location.reload()
       }else{
-          alert(res.data)
+        window.alert(res.data)
+        window.location.reload()
+
       }
        
   }).catch((e)=>{

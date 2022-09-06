@@ -38,8 +38,9 @@ function Books({book, Add, present}) {
      // document.body.appendChild(link);
       link.click();
     })
+    
   }
- 
+  let user_role = (window.sessionStorage.getItem('user_role'));
   return (
 
     
@@ -72,6 +73,7 @@ function Books({book, Add, present}) {
     Read more
     </div>
     {/*Update book*/}
+    {user_role!== 'admin'?<></>:
     <div className='more'>
     <style>{`
         .red {color: red}
@@ -79,17 +81,19 @@ function Books({book, Add, present}) {
         
       `}</style>
       
-  <button className='button_more'>
-  <AiOutlineBook  onClick={togglePopupChange}></AiOutlineBook>
-      {isOpenChange && <PopupChangeBook book={book}
+  <button className='button_more'  > 
+  <AiOutlineBook onClick={togglePopupChange}></AiOutlineBook>
+      {isOpenChange && <PopupChangeBook 
+       handleClose={()=>{}} 
+      book={book}
       handleCloseChange={togglePopupChange}
     />}
-    
     </button>
+  
      
     Update book
     </div>
-
+}
 {/*Like book*/}
     
     <div className='like'> 

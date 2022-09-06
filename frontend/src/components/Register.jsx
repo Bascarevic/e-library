@@ -40,7 +40,7 @@ function Register() {
               alert('Greska!');
             }
             alert("Uspesno ste se registrovali!")
-            navigate("/login");
+            navigate("/");
         }).catch(e=>{
             console.log(e)
         });

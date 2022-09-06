@@ -34,9 +34,9 @@ const Login = () => {
             console.log(res.data);
             if(res.data.success === true){
               window.sessionStorage.setItem('auth_token', res.data.access_token);
-              window.sessionStorage.setItem('user_type', res.data.user_type[0].role_name);
+              window.sessionStorage.setItem('user_role', res.data.user_type[0].role_name);
               window.sessionStorage.setItem('user_id', res.data.user_id);
-              window.location.href = '/'
+              window.location.href = '/bookstore'
               //  addToken(res.data.access_token);
               //  navigate("/");
               alert("Uspesno ste ulogovani")

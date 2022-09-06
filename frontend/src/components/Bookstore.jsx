@@ -24,6 +24,7 @@ function Bookstore({Add}) {
     if(books===null){
      axios.get('http://127.0.0.1:8000/api/books').then((res)=>{
       setBooks(res.data.books)
+      console.log(res.data.books);
      }).catch((e)=>{
 
      })

@@ -23,40 +23,29 @@ function MenuDown () {
 
     //https://programming-quotes-api.herokuapp.com/quotes/random
 
-    const[quotesData, setQuotesData] = useState(null);
-
-    useEffect(()=>{
-      if(quotesData == null){
-        axios.get('https://programming-quotes-api.herokuapp.com/quotes/random')
-        .then((res)=>{
-          console.log(res)
-          setQuotesData(res.data)
-        }).catch((e)=>{
-
-        })
-      }
-    }, [quotesData])
+    let user_role = (window.sessionStorage.getItem('user_role'));
 
   return (
     <div className='menuDown'>
       <div className='menuDownText'>See my favourite books
       <Link to='/fav' className='button_next'>
         <BsChevronDoubleRight></BsChevronDoubleRight>
-        </Link>
+        </Link> 
         
+        <br></br>
+        {user_role!== 'admin'?<></>:
+        <a href="/profile" className="link-danger">Profile</a>
+      }
+        </div>
         {weatherData == null ? <></> :
-        <div className='weatherData'>
-          <p>City:{weatherData.location.name}, {weatherData.location.country}</p>
-          <p>Temperature:  {weatherData.current.temp_c} C</p>
+        <div className='weatherDataText'>
+          City:{weatherData.location.name}, {weatherData.location.country} <br></br>
+          Temperature:  {weatherData.current.temp_c} C
           </div>
          }
-         {quotesData == null ? <></> ://ovde moze da se izvuce i autor citata
-         <div className='quotesData'>
-          <p>Quote: {quotesData.en}</p>
-         </div>
-         }
+         
     
-        </div>
+       
         
     </div>
   )

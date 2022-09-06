@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import {Table} from 'antd';
+import { DataGrid } from '@mui/x-data-grid';
+
 
 const DataTable = ()=>{
 
@@ -38,29 +40,36 @@ const DataTable = ()=>{
     }));
 
     const columns = [{
-        title: "Title",
-        dataIndex: "title",
-        align: "center"
+        headerName: "Title",
+        field: "title",
+        width: 450
     },
     {
-        title: "Author",
-        dataIndex: "author",
-        align: "center"
+        headerName: "Author",  //title
+        field: "author", //dataIndex
+        width: 450 //align
     },
     {
-        title: "Description",
-        dataIndex: "description",
-        align: "center"
-    }
+        headerName: "Description",
+        field: "description",
+        width: 450
+    }//PREMESTITI DA SVE BUDE U JEDNOJ KOMPONENTI, DA NE IDE I U PROFILE I U DATATABLE
 ];
 
     return(
-        <div>
+        <div className="dataGrid"> 
+             <DataGrid
+        rows={modifedData}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+      /> {/* 
             <Table
             columns={columns}
             dataSource={modifedData}
             bordered
             loading={loading}/>
+            */}
         </div>
     )
 }

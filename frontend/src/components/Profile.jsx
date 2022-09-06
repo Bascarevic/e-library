@@ -18,7 +18,7 @@ function Profile() {
 */
     return(
         <div className='App'>
-            <h1>Working with table in react js</h1>
+            
             <DataTable/>
         </div>
 

@@ -9,6 +9,7 @@ use App\Models\Book;
 use App\Models\Category;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Psy\Readline\Hoa\Console;
@@ -175,6 +176,8 @@ class BookController extends Controller
 
             $book = Book::find($id);
 
+           //$book = Book::where('book_id', $book_id)->first(); 
+
             $book->title = $request->title;
             $book->description = $request->description;
             $book->id_author =  $author->id;
@@ -189,6 +192,8 @@ class BookController extends Controller
             ]);
             $book = Book::find($id);
 
+          // $book = Book::where('book_id', $book_id)->first(); 
+
             $book->title = $request->title;
             $book->description = $request->description;
             $book->id_author =  $author->id;
@@ -202,6 +207,8 @@ class BookController extends Controller
             ]);
             $book = Book::find($id);
 
+            //$book = Book::where('book_id', $book_id)->first(); 
+
             $book->title = $request->title;
             $book->description = $request->description;
             $book->id_author = $author_id->id;
@@ -212,6 +219,7 @@ class BookController extends Controller
         }
         else{
             $book = Book::find($id);
+            //$book = Book::where('book_id', $book_id)->first(); 
 
             $book->title = $request->title;
             $book->description = $request->description;
@@ -232,19 +240,22 @@ class BookController extends Controller
         $logged_user = auth()->user();
         $user_role=UserRole::find($logged_user->id_role);
 
-        if($user_role->role_name!='user') {
+        if($user_role->role_name!='admin') {
             return response()->json(['You do not have premission for that action!']);
         }
+        
+        //FIND NE RADI VRV ZBOG PROMENE ID U BOOK_ID
 
-       $book = Book::find($id);
-
+         $book = Book::find($id);
+      //  $book = Book::where('book_id', $book_id); 
+       
         $book->delete();
         return response()->json(['Book deleted!']);
     }
 
-    public function show($id)
+    public function show($book_id)
     {
-        $book = Book::find($id);
+        $book = Book::find($book_id);
         return new BookResource($book);
     }
 }
